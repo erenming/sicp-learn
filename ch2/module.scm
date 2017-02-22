@@ -33,3 +33,13 @@
                       (enumerate-tree (cdr tree))))
     )
 )
+
+
+(define (flatmap proc seq)
+    (accumulate append nil (map proc seq))
+)
+
+(define (remove item sequence)
+    (filter (lambda (x) (not (= x item)))
+            sequence)
+)
