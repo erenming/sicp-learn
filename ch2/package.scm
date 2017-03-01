@@ -58,7 +58,7 @@
             (if proc
                 (apply proc (map contents args)))
                 (error "No method for these types -- APPLY-GENERIC"
-                        (list op type-tags))
+                        (list op type-tags0))
         )
     )
 )
