@@ -1,0 +1,26 @@
+(define (make-account balance pwd)
+    (define (withdraw amount)
+        (if (>= balance amount)
+            (begin (set! balance (- balance amount)) balance)
+            "Insufficient funds"))
+    (define (deposit amount)
+        (begin (set! balance (+ balance amount))
+        balance))
+    (define (dispatch p m)
+        (if (eq? p pwd)
+            (cond
+                ((eq? m 'withdraw) withdraw)
+                ((eq? m 'deposit) deposit)
+                (else (error "Unkonwn request -- MAKE-ACCOUNT" m)))
+            ("Incorrect password")
+            ))
+    dispatch
+)
+
+(define (make-joint account old-pwd new-pwd)
+    (lambda
+        (pwd m)
+        (if (eq? pwd new-pwd)
+            (account old-pwd m)
+            ("Incorrect password")))
+)
