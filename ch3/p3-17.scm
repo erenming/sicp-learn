@@ -1,0 +1,15 @@
+(define (count-pairs x)
+    (let ((encounted '()))
+        (define (helper x)
+            (if (or (not (pair? x)) (memq x encounted))
+                0
+                (begin
+                    (set! (encounted) (cons x encounted))
+                    (+  (helper (car x))
+                        (helper (cdr x))
+                        1))
+            )
+        )
+        (helper x)
+    )
+)
