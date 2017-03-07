@@ -1,0 +1,13 @@
+(load "p3-28.scm")
+
+; a or b equal (not ((not a) and (not b)))
+(define (or-gate a1 a2 output)
+    (let ((c1 (make-wire))
+            (c2 (make-wire))
+            (c3 (make-wire)))
+        (inverter a1 c1)
+        (inverter a2 c2)
+        (and-gate a1 a2 c3)
+        (inverter c3 output)
+    )
+)
